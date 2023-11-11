@@ -10,7 +10,7 @@ async function createTodo(data: FormData) {
     throw new Error("Invalid Title");
   }
   await prisma.todo.create({ data: { title, complete: false } });
-  redirect("/");
+  redirect("/schedule");
 }
 
 const New = () => {
