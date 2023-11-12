@@ -1,4 +1,4 @@
-import TodoItem from "@/components/TodoItem";
+import TodoItem from "@/app/schedule/components/TodoItem";
 import prisma from "@/db";
 import Link from "next/link";
 import React from "react";

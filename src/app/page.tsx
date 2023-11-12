@@ -8,7 +8,7 @@ const HomePage = () => {
   return (
     <div className="container mx-auto py-2 px-2">
       <h1 className="text-2xl text-slate-100 text-center underline mb-5 md:mb-10">
-        Examples
+        Next JS Projects Examples
       </h1>
       <div className="flex flex-row  ">
         {projects.map((project, i) => {
