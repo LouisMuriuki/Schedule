@@ -1,17 +1,6 @@
-import prisma from "@/db";
+import { createTodo } from "@/Actions/schedule";
 import Link from "next/link";
-import { redirect } from "next/navigation";
 import React from "react";
-
-async function createTodo(data: FormData) {
-  "use server";
-  const title = data.get("title")?.valueOf(); //as per name passed
-  if (typeof title !== "string" || title.length === 0) {
-    throw new Error("Invalid Title");
-  }
-  await prisma.todo.create({ data: { title, complete: false } });
-  redirect("/schedule");
-}
 
 const New = () => {
   return (
