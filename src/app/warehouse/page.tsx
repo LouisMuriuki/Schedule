@@ -2,6 +2,7 @@ import { addProductToDatabase } from "@/Actions/warehouse";
 import { Product } from "@/types";
 import { revalidateTag } from "next/cache";
 import React from "react";
+import AddButton from "./componets/AddButton";
 
 
 
@@ -55,6 +56,7 @@ const WareHousing = async () => {
           );
         })}
       </div>
+      <AddButton/>
     </div>
   );
 };

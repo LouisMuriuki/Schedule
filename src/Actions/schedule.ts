@@ -5,7 +5,7 @@ import { redirect } from "next/navigation";
 
  export async function createTodo(data: FormData) {
  
-  const title = data.get("title")?.valueOf(); //as per name passed
+  const title = data.get("title")?.valueOf(); //as per name passed and check if null or empty
   if (typeof title !== "string" || title.length === 0) {
     throw new Error("Invalid Title");
   }
