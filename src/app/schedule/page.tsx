@@ -1,8 +1,12 @@
 import TodoItem from "@/app/schedule/components/TodoItem";
 import prisma from "@/db";
+import { revalidatePath } from "next/cache";
 import Link from "next/link";
-import React from "react";
+import { redirect } from "next/navigation";
+import React, { Suspense } from "react";
+import Loading from "./loading";
 
+export const revalidate = 1;
 const getTOdos = () => {
   return prisma.todo.findMany();
 };
@@ -10,6 +14,7 @@ const getTOdos = () => {
 const toggleTodo = async (id: string, complete: boolean) => {
   "use server";
   await prisma.todo.update({ where: { id }, data: { complete } });
+  revalidatePath("/schedule");
 };
 
 const Home = async () => {
@@ -26,11 +31,13 @@ const Home = async () => {
           New
         </Link>
       </header>
-      <ul>
-        {todos.map((todo, i) => {
-          return <TodoItem key={todo.id} {...todo} toggleTodo={toggleTodo} />;
-        })}
-      </ul>
+      <Suspense fallback={<Loading />}>
+        <ul>
+          {todos.map((todo, i) => {
+            return <TodoItem key={todo.id} {...todo} toggleTodo={toggleTodo} />;
+          })}
+        </ul>
+      </Suspense>
     </>
   );
 };

@@ -10,7 +10,9 @@ export const addProductToDatabase = async (data: FormData) => {
   const productName = data.get("product")?.toString();
   const productPrice = data.get("price")?.toString();
 
-  if (!productName || !productPrice) return;
+  if (!productName || !productPrice) {
+    throw new Error("Invalid data Entry")
+  }
 
   const newProduct: Product = {
     product: productName,
